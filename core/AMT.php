@@ -7,6 +7,7 @@ class AMT
 	public static function init()
 	{
 		self::initVars();
+		Database::init();
 	}
 			
 	public static function initVars()
@@ -17,6 +18,9 @@ class AMT
 		define('DATETIME', date('Y-m-d H:i:s'));
 		
 		define('ENV', stripos($_SERVER['SERVER_NAME'], 'sandorfekete.com') === false ? 'local' : 'live');
+		
+		define('CLR_GREEN', 'green');
+		define('CLR_RED', 'red');
 		
 		$serverName = 'http://'.$_SERVER['SERVER_NAME'];
 		$scriptName = str_replace('/index.php', '', $_SERVER['SCRIPT_NAME']);

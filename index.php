@@ -3,16 +3,6 @@
 require_once 'autoload.php';
 
 AMT::init();
-Database::init();
-
-$order = new Order();
-//$order->fetch('0');
-//$order->get('foo');
-//$order->set('notes', 100);
-$order->set('notes', '100 <html> "DELETE FROM", INSERT inot');
-//$order->save();
-
-echo '<pre>'; print_r($order); exit();
 
 ?>
 
@@ -70,7 +60,6 @@ echo '<pre>'; print_r($order); exit();
 			</tr>
 		</tfoot>
 	</table>
-	
 	
     <script>AMT.init();</script>
 </body>

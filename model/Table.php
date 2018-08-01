@@ -13,10 +13,22 @@ class Table
 		return $this;
 	}
 	
+//	public function fetchAll()
+//	{
+//		$query = "SELECT * FROM $this->_table_name";
+//		
+//		if (!$rows = Database::getRows($query)){
+//			Error::log("data for the following query ( $query ) does not exist.", 'Table');
+//		}
+//		
+//		return $rows;
+//	}
+	
 	public function fetch($id)
-	{
+	{ 
 		if (!is_numeric($id)){
-			Error::log("fetch 'id' of '$id' for ".get_class($this)." is not numeric.", 'Table');
+			Error::log("fetch 'id' of '$id' for ".get_class($this)." class is not numeric.", 'Table');
+			return false;
 		}
 		
 		$id = filter_var($id, FILTER_SANITIZE_NUMBER_INT);
@@ -25,8 +37,9 @@ class Table
 		
 		if (!$data = Database::getRows($query)){
 			Error::log("data for the following query ( $query ) does not exist.", 'Table');
+			return false;
 		}
-				
+		
 		foreach ($data as $prop => $value){
 			if ($prop == 'id'){
 				$this->_id = $value;
@@ -45,25 +58,35 @@ class Table
 		if (property_exists($this, $prop)){
 			return $this->{$prop};
 		} else {
-			Error::log("cannot GET; the property '$prop' does not exist in ".get_class($this).".", 'Table');
+			Error::log("cannot GET; the property '$prop' does not exist in ".get_class($this)." class.", 'Table');
+			return false;
 		}
 	}
 	
 	public function set($prop, $value)
 	{
 		if (property_exists($this, $prop)){
-			if (is_numeric($this->{$prop}) && is_numeric($value)){
-				$value = filter_var($value, FILTER_SANITIZE_NUMBER_INT);
-			} else if (is_string($this->{$prop}) && is_string($value)){
-				$value = filter_var($value, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
-			} else {
-				Error::log("cannot SET property '$prop' to '$value' in ".get_class($this)." class; type mismatch.", 'Table');
+			if (strpos($prop, '_') === 0){
+				Error::log("cannot SET reserved property '$prop' in ".get_class($this)." class.", 'Table');
+				return false;
 			}
 			
-			$this->{$prop} = mysqli_real_escape_string(Database::$db, $value);
+			if (is_numeric($this->{$prop}) && is_numeric($value)){
+				$value = filter_var($value, FILTER_SANITIZE_NUMBER_INT);
+				$this->{$prop} = (int) $value;
+			} else if (is_string($this->{$prop}) && is_string($value)){
+				$value = filter_var($value, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+				$this->{$prop} = mysqli_real_escape_string(Database::$db, $value);
+			} else {
+				Error::log("cannot SET property '$prop' to '$value' in ".get_class($this)." class; type mismatch.", 'Table');
+				return false;
+			}
 		} else {
-			Error::log("cannot SET; the property '$prop' does not exist in ".get_class($this).".", 'Table');
+			Error::log("cannot SET; the property '$prop' does not exist in ".get_class($this)." class.", 'Table');
+			return false;
 		}
+		
+		return $this;
 	}
 	
 	public function save()
