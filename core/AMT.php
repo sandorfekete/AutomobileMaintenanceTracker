@@ -35,7 +35,7 @@ class AMT
 		
 		if (ENV == 'live')
 		{
-			$BASEURL = $serverName.'/AMT';
+			$BASEURL = $serverName.'/AutomobileMaintenanceTracker';
 		}
 		else
 		{
