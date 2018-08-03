@@ -2,7 +2,7 @@
 
 $order = new Order();
 
-Test::assertFalse($order->fetch(100), 'order->fetch non existent id');
+Test::assertFalse($order->fetch(99999), 'order->fetch non existent id');
 Test::assertFalse($order->fetch('foo'), 'order->fetch string as id');
 
 Test::assertTrue($order->fetch(1), 'order->fetch existing id');

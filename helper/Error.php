@@ -8,9 +8,13 @@ class Error
 		$msg = '<br><i><span style="color:'.CLR_RED.'">';
 		$msg .= $source != '' ? "$severity($source): " : "$severity: ";
 		$msg .= $message;
-		$msg .= '</span></i>';
+		$msg .= '</span></i><br>';
 		
-		echo (! defined('TESTING_MODE') ? $msg : '');
+		if (defined('AJAX')){
+			header("HTTP/1.0 400 $message");
+		} else {
+			echo (! defined('NOERRORS') ? $msg : '');
+		}
 	}
 			
 }

@@ -1,10 +1,14 @@
 <?php
 
+if (!defined('PATH')){
+	define('PATH', dirname(__FILE__));
+}
+
 spl_autoload_register(function ($class_name) {
 	
-	$pathCore = "core/$class_name.php";
-	$pathHelper = "helper/$class_name.php";
-	$pathModel = "model/$class_name.php";
+	$pathCore = PATH."/core/$class_name.php";
+	$pathHelper = PATH."/helper/$class_name.php";
+	$pathModel = PATH."/model/$class_name.php";
 	
 	if (file_exists($pathCore)){
 		require_once $pathCore;

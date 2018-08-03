@@ -29,7 +29,9 @@ class Database
 	{ 
 		$result = mysqli_query(self::$db, $query);
 		
-		if (!$result || $result->num_rows === 0) return false;
+		if (!$result || $result->num_rows === 0){
+			return false;
+		}
 		
 		if ($assoc){
 			while ($row = mysqli_fetch_assoc($result)){
@@ -41,7 +43,28 @@ class Database
 			}
 		}
 		
-		return isset($rows) ? (count($rows) > 1 ? $rows : $rows[0]) : false;
+		return isset($rows) ? $rows : false;
+	}
+	
+	public static function getRow($query, $assoc=true)
+	{ 
+		$result = mysqli_query(self::$db, $query);
+		
+		if (!$result || $result->num_rows === 0){
+			return false;
+		}
+		
+		if ($assoc){
+			while ($row = mysqli_fetch_assoc($result)){
+				$rows[] = $row;
+			}
+		} else {
+			while ($row = mysqli_fetch_object($result)){
+				$rows[] = $row;
+			}
+		}
+		
+		return isset($rows) ? $rows[0] : false;
 	}
 	
 	public static function execute($query)

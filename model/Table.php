@@ -12,18 +12,7 @@ class Table
 	{	
 		return $this;
 	}
-	
-//	public function fetchAll()
-//	{
-//		$query = "SELECT * FROM $this->_table_name";
-//		
-//		if (!$rows = Database::getRows($query)){
-//			Error::log("data for the following query ( $query ) does not exist.", 'Table');
-//		}
-//		
-//		return $rows;
-//	}
-	
+		
 	public function fetch($id)
 	{ 
 		if (!is_numeric($id)){
@@ -35,7 +24,7 @@ class Table
 		
 		$query = "SELECT * FROM $this->_table_name WHERE id = $id";
 		
-		if (!$data = Database::getRows($query)){
+		if (!$data = Database::getRow($query)){
 			Error::log("data for the following query ( $query ) does not exist.", 'Table');
 			return false;
 		}
