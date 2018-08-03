@@ -5,7 +5,7 @@ $order = new Order();
 Test::assertFalse($order->fetch(99999), 'order->fetch non existent id');
 Test::assertFalse($order->fetch('foo'), 'order->fetch string as id');
 
-Test::assertTrue($order->fetch(30), 'order->fetch existing id');
+Test::assertTrue($order->fetch(1), 'order->fetch existing id');
 Test::assertTrue($order->get('notes'), 'order->get existing prop');
 
 Test::assertFalse($order->set('foo', 'bar'), 'order->set non existent prop');
