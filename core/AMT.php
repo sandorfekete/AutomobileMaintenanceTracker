@@ -35,7 +35,7 @@ class AMT
 		
 		if (ENV == 'live')
 		{
-			$BASEURL = $serverName;
+			$BASEURL = $serverName.'/AMT';
 		}
 		else
 		{
