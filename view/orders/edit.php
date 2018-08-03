@@ -14,7 +14,7 @@
 			<label>Model:
 				<input readonly="readonly" value="<?php echo $automobile['model'] ?>" />
 			</label>
-			<label>Odometer:
+			<label>Odometer(km):
 				<input readonly="readonly" value="<?php echo $automobile['odometer'] ?>" />
 			</label>
 			<label>Colour:
@@ -42,7 +42,7 @@
 				<textarea name="notes" class="data required"><?php echo $order->get('notes') ?></textarea>
 			</label>
 
-			<label>Odometer:
+			<label>Odometer(km):
 				<input type="text" name="odometer" class="data digits required" value="<?php echo $order->get('odometer') ?>" />
 			</label>
 			

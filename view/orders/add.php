@@ -18,7 +18,7 @@
 				<textarea name="notes" class="data required"></textarea>
 			</label>
 			
-			<label>Odometer:
+			<label>Odometer(km):
 				<input type="text" name="odometer" class="data digits required" value="" />
 			</label>
 			

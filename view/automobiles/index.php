@@ -13,7 +13,7 @@
 				<th>plate</th>
 				<th>type</th>
 				<th>colour</th>
-				<th>odometer</th>
+				<th>odometer(km)</th>
 				<th>created</th>
 				<th>modified</th>
 				<th width="70">actions</th>

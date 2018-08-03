@@ -13,7 +13,7 @@ class Database
 	{
 		if (ENV == 'live')
 		{
-			self::$db = mysqli_connect("localhost", "pixelate_amt", "tP1xelated77", "pixelate_amt");
+			self::$db = mysqli_connect("localhost", "pixelate_amt", "Ov@oiMX-!yA!", "pixelate_amt");
 		}
 		else
 		{

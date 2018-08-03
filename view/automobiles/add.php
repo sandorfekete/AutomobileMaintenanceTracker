@@ -30,7 +30,7 @@
 				<input type="text" name="plate" class="data required" value="" />
 			</label>
 			
-			<label>Odometer:
+			<label>Odometer(km):
 				<input type="text" name="odometer" class="data digits required" value="" />
 			</label>
 			

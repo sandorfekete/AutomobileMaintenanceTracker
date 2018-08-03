@@ -3,9 +3,8 @@ AMT.Form.Util = {
 	countFalseEmpty: function(value)
 	{
 		var count = 0;
-		var i = 0;
 		
-		for (i = 0; i < value.length; i++)
+		for (var i = 0; i < value.length; i++)
 		{
 			if (value.charAt(i) == " " || value.charAt(i) == "\n")
 			{
@@ -101,6 +100,26 @@ AMT.Form.Util = {
 		}
 		
 		return temp;
+	},
+	
+	numberCommas: function(number)
+	{
+		var components = number.toString().split(".");
+		
+		if (components.length === 1)
+		{
+			components[0] = number;
+		}
+		
+		components[0] = components[0].replace(/\D/g, "");
+		components[0] = components[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		
+		if (components.length === 2)
+		{
+			components[1] = components[1].replace(/\D/g, "");
+		}
+		  
+		return components.join(".");		
 	}
 
 };

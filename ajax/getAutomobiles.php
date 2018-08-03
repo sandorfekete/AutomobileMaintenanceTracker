@@ -27,7 +27,7 @@ if ($rows = getData())
 		$dataRow[] = $row['plate'];
 		$dataRow[] = $row['type'];
 		$dataRow[] = $row['colour'];
-		$dataRow[] = $row['odometer'];
+		$dataRow[] = AMT::numberCommas($row['odometer']);
 		$dataRow[] = $row['date_created'];
 		$dataRow[] = $row['date_modified'];
 

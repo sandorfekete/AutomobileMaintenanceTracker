@@ -30,8 +30,8 @@
 				<input type="text" name="plate" class="data required" value="<?php echo $automobile->get('plate') ?>" />
 			</label>
 			
-			<label>Odometer:
-				<input type="text" name="odometer" class="data digits required" value="<?php echo $automobile->get('odometer') ?>" />
+			<label>Odometer(km):
+				<input type="text" name="odometer" readonly="readonly" value="<?php echo $automobile->get('odometer') ?>" />
 			</label>
 
 			<label>Date Created:

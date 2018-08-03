@@ -153,6 +153,26 @@ class AMT
 		return $html;
 	}
 	
+	public static function numberCommas($number)
+	{
+		$components = explode('.', (string) $number);
+		
+		if (count($components) === 1)
+		{
+			$components[0] = $number;
+		}
+		
+		$components[0] = preg_replace('/\D/', "", $components[0]);
+		$components[0] = preg_replace('/\B(?=(\d{3})+(?!\d))/', ",", $components[0]);
+		
+		if (count($components) === 2)
+		{
+			$components[1] = preg_replace('/\D/', "", $components[1]);
+		}
+		  
+		return implode(".", $components);
+	}
+	
 	public static function log($var, $exit=false)
 	{
 		echo '<pre>'; print_r($var);

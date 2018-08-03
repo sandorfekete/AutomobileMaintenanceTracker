@@ -5,7 +5,7 @@
 		<thead>
 			<tr>
 				<th>id</th>
-				<th width="200">auto</th>
+				<th width="200">automobile</th>
 				<th>type</th>
 				<th width="200">notes</th>
 				<th>created</th>

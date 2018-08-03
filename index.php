@@ -34,7 +34,9 @@ AMT::init();
 			<?php if (VIEW != 'home') : ?>
 				<?php include 'controller/'.CONTROLLER.'.php'; ?>
 			<?php endif ?>
+			
 			<?php include 'view/'.VIEW.'.php'; ?>
+			
 			<div class="clear"></div>
 			
 		</div>

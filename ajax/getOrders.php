@@ -56,7 +56,7 @@ function getData($limit=true)
 	$sql = "
 		SELECT 
 			o.*, 
-			CONCAT(a.year, ':', am.name, ':', a.model, '<br>', a.plate, '<br>', at.name) AS automobile,
+			CONCAT(a.year, ' ', am.name, ' ', a.model, '<br>', a.plate, '<br>', at.name) AS automobile,
 			ot.name AS order_type 
 		";
 	
