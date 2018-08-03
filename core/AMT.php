@@ -33,9 +33,12 @@ class AMT
 		$serverName = 'http://'.$_SERVER['SERVER_NAME'];
 		$scriptName = str_replace('/index.php', '', $_SERVER['SCRIPT_NAME']);
 		
-		if (ENV == 'live'){
+		if (ENV == 'live')
+		{
 			$BASEURL = $serverName;
-		} else {
+		}
+		else
+		{
 			$BASEURL = $serverName.$scriptName;
 		}
 		
@@ -62,7 +65,8 @@ class AMT
 		$fields = array();
 		reset($_POST);
 		
-		for ($c = 0; $c < count($_POST); $c++){
+		for ($c = 0; $c < count($_POST); $c++)
+		{
 			$value = trim(strip_tags(current($_POST)));
 			$fields[key($_POST)] = $value;
 			next($_POST);
@@ -81,7 +85,8 @@ class AMT
 		$html = '<select id="'.$id.'" name="'.$id.'" data-error-label="'.$dataErrorLabel.'" class="'.$class.'" '.$attribs.'>';
 		$html .= '<option value="">-- select --</option>';
 		
-		foreach ($data as $d){
+		foreach ($data as $d)
+		{
 			$makeSelected = $d['value'] == $selected ? 'selected' : '';
 			$html .= '<option value="'.$d['value'].'" '.$makeSelected.'>'.$d['label'].'</option>';
 		}
@@ -95,10 +100,12 @@ class AMT
 	{
 		$html = '';
 
-		foreach ($data as $row){
+		foreach ($data as $row)
+		{
 			$html .= '<tr data-row-id="'.$row[0].'">';
 
-			foreach ($row as $item){
+			foreach ($row as $item)
+			{
 				$html .= '<td>'.$item.'</td>';
 			}
 
@@ -123,17 +130,21 @@ class AMT
 
 		$html .= '<li class="first" data-limit-offset="'.$firstPage.'">First</li>';
 
-		if ($currPage > $firstPage){
+		if ($currPage > $firstPage)
+		{
 			$html .= '<li class="previous" data-limit-offset="'.$prevPage.'">Previous</li>';
 		}
 
-		for ($i = $currPage; $i < $currPage+10; $i++){
-			if ($i < $lastPage+1){
+		for ($i = $currPage; $i < $currPage+10; $i++)
+		{
+			if ($i < $lastPage+1)
+			{
 				$html .= '<li class="'.($i == $currPage ? 'active' : '').'" data-limit-offset="'.$i.'">'.($i+1).'</li>';
 			}
 		}
 
-		if ($currPage < $lastPage){
+		if ($currPage < $lastPage)
+		{
 			$html .= '<li class="next" data-limit-offset="'.$nextPage.'">Next</li>';
 		}
 

@@ -74,7 +74,8 @@ AMT.Form.Util = {
 		return elem;
 	},
 
-	pluralize: function(elem){
+	pluralize: function(elem)
+	{
 		var y_pos = elem.lastIndexOf('y');
 
 		if (y_pos == elem.length - 1)

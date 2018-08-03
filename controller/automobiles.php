@@ -40,7 +40,8 @@ else if (strpos(VIEW, 'edit') !== false)
 {
 	$id = isset($_POST['_id']) ? (int) $_POST['_id'] : false;
 
-	if (!$id){
+	if (!$id)
+	{
 		echo 'ERROR - No Order id';
 		exit();
 	}

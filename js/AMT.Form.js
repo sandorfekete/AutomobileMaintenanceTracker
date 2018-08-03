@@ -14,7 +14,8 @@ AMT.Form = {
 		this.messages = [];
 		
 		$(jForm+' input.data, '+jForm+' select.data, '+jForm+' textarea.data').each(function(i){	
-			if (!thisObj.validateField($(this))){
+			if (!thisObj.validateField($(this)))
+			{
 				errors++;
 			}
 		});	
@@ -27,7 +28,8 @@ AMT.Form = {
 		{
 			message = "<b>ERRORS:</b><br>";
 			
-			for (var i = 0; i < this.messages.length; i++){
+			for (var i = 0; i < this.messages.length; i++)
+			{
 				message += "- " + this.messages[i] + "<br>";
 			}
 				
@@ -52,25 +54,32 @@ AMT.Form = {
 		
 		if (!AMT.Form.Util.checkEmpty(field, value))		
 		{		
-			if (!AMT.Form.Validate.validateChars(value)){
+			if (!AMT.Form.Validate.validateChars(value))
+			{
 				msg = 'invalid characters';
 			}
-			else if ($(field).hasClass("email") && !AMT.Form.Validate.validateEmail(value)){
+			else if ($(field).hasClass("email") && !AMT.Form.Validate.validateEmail(value))
+			{
 				msg = 'invalid email';
 			}		
-			else if ($(field).hasClass("digits") && !AMT.Form.Validate.validateDigits(value)){
+			else if ($(field).hasClass("digits") && !AMT.Form.Validate.validateDigits(value))
+			{
 				msg = 'digits only';
 			}	
-			else if ($(field).hasClass("date") && !AMT.Form.Validate.validateDate(value)){
+			else if ($(field).hasClass("date") && !AMT.Form.Validate.validateDate(value))
+			{
 				msg = 'date format: mm/dd/yyyy';
 			}				
-			else if ($(field).hasClass("postalcode") && !AMT.Form.Validate.validatePostalCode(value)){
+			else if ($(field).hasClass("postalcode") && !AMT.Form.Validate.validatePostalCode(value))
+			{
 				msg = 'postal code format: T0T 0T0';
 			}
-			else if ($(field).closest('label').hasClass('invalid')){
+			else if ($(field).closest('label').hasClass('invalid'))
+			{
 				msg = 'invalid';
 			}
-			else{
+			else
+			{
 				this.removeError(field);
 				return true;
 			}
@@ -146,15 +155,12 @@ AMT.Form = {
 		
 		message = $(field).attr('data-error-label') ? $(field).attr('data-error-label') : $(field).attr('name');
 		message = message.replace(/\[\]/g, '');
+		message = this.formatErrorLabel(message);	
+		message = AMT.Form.Util.capitalize(message);
 		
-		//if (message.match(/_/gi))
-		//{
-			message = this.formatErrorLabel(message);	
-			message = AMT.Form.Util.capitalize(message);
-		//}
-		
-		// this resolves radio buttons and checkboxes
-		if ($.inArray(message, this.messages) == -1){
+		// this resolves duplicate error messages for radio and checkbox sets
+		if (!this.messages.includes(message))
+		{
 			this.messages.push(message + ' - ' + error);
 		}
 		

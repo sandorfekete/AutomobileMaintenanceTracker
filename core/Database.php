@@ -11,13 +11,17 @@ class Database
 	
 	public static function initDB()
 	{
-		if (ENV == 'live'){
+		if (ENV == 'live')
+		{
 			self::$db = mysqli_connect("localhost", "pixelate_amt", "tP1xelated77", "pixelate_amt");
-		} else {
+		}
+		else
+		{
 			self::$db = mysqli_connect("localhost", "root", "", "AutoMainTrack");
 		}
 
-		if (!self::$db) {
+		if (!self::$db)
+		{
 			echo "Error: Unable to connect to MySQL." . PHP_EOL;
 			echo "Debugging errno: " . mysqli_connect_errno() . PHP_EOL;
 			echo "Debugging error: " . mysqli_connect_error() . PHP_EOL;
@@ -29,16 +33,22 @@ class Database
 	{ 
 		$result = mysqli_query(self::$db, $query);
 		
-		if (!$result || $result->num_rows === 0){
+		if (!$result || $result->num_rows === 0)
+		{
 			return false;
 		}
 		
-		if ($assoc){
-			while ($row = mysqli_fetch_assoc($result)){
+		if ($assoc)
+		{
+			while ($row = mysqli_fetch_assoc($result))
+			{
 				$rows[] = $row;
 			}
-		} else {
-			while ($row = mysqli_fetch_object($result)){
+		}
+		else
+		{
+			while ($row = mysqli_fetch_object($result))
+			{
 				$rows[] = $row;
 			}
 		}
@@ -50,16 +60,22 @@ class Database
 	{ 
 		$result = mysqli_query(self::$db, $query);
 		
-		if (!$result || $result->num_rows === 0){
+		if (!$result || $result->num_rows === 0)
+		{
 			return false;
 		}
 		
-		if ($assoc){
-			while ($row = mysqli_fetch_assoc($result)){
+		if ($assoc)
+		{
+			while ($row = mysqli_fetch_assoc($result))
+			{
 				$rows[] = $row;
 			}
-		} else {
-			while ($row = mysqli_fetch_object($result)){
+		}
+		else
+		{
+			while ($row = mysqli_fetch_object($result))
+			{
 				$rows[] = $row;
 			}
 		}

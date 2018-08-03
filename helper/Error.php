@@ -10,11 +10,13 @@ class Error
 		$msg .= $message;
 		$msg .= '</span></i><br>';
 		
-		if (defined('AJAX')){
+		if (defined('AJAX'))
+		{
 			header("HTTP/1.0 400 $message");
-		} else {
+		}
+		else
+		{
 			echo (! defined('NOERRORS') ? $msg : '');
 		}
 	}
-			
 }

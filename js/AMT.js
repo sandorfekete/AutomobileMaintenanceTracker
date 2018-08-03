@@ -5,16 +5,21 @@ AMT = {
 	CONTROLLER: '',
 	VIEW: '',
 			
-    init: function(){
+    init: function()
+	{
 		console.log('jQuery OK');
 		console.log('AMT initialized');
 		
-		if (['orders','automobiles'].includes(this.CONTROLLER)){
+		// fetch records via AJAX only when in specific controller and view
+		if (['orders','automobiles'].includes(this.CONTROLLER)
+		&& ![this.CONTROLLER+'/edit', this.CONTROLLER+'/add'].includes(this.VIEW))
+		{
 			this.getRecords();
 		}
     },
 	
-	getRecords: function(){
+	getRecords: function()
+	{
 		var $form = $('#frmFilters');
 		var action = 'get'+AMT.Form.Util.capitalize(this.CONTROLLER);
 
@@ -37,33 +42,41 @@ AMT = {
 		});
 	},
 
-	bindPagination: function(){
+	bindPagination: function()
+	{
 		$('#frmFilters .pagination li').click(function(e){
 			var limitOffset = $(this).attr('data-limit-offset');
-			//console.log(limitOffset);
+			
 			$('input[name="limitOffset"]').val(limitOffset);
-			e.stopPropagation();
+			
 			AMT.getRecords();
 		});
 	},
 	
-	addRecord: function(){
+	addRecord: function()
+	{
 		location.href = AMT.BASEURL+'/'+AMT.CONTROLLER+'/add';
 	},
 	
 	
-	editRecord: function(id){
+	editRecord: function(id)
+	{
 		$('#frmAction').find('input[name="_id"]').val(id).parent().submit();
 	},
 	
-	deleteRecord: function(id){
+	deleteRecord: function(id)
+	{
 		var action = 'delete'+AMT.Form.Util.capitalize(AMT.Form.Util.singularize(this.CONTROLLER));
 		
 		$('tr[data-row-id="'+id+'"]').addClass('error');
 
+		// need a short timeout, otherwise confirm window appears before row highlight
 		var timeout = setTimeout(function(){
+			
 			clearTimeout(timeout);
-			if (confirm('Are you sure you want to DELETE record #'+id+'?')){
+			
+			if (confirm('Are you sure you want to DELETE record #'+id+'?'))
+			{
 				$.ajax({
 					url: AMT.BASEURL+'/ajax/'+action+'.php',
 					type: 'POST',
@@ -74,7 +87,9 @@ AMT = {
 						AMT.getRecords();
 					}
 				});
-			} else {
+			}
+			else
+			{
 				$('tr[data-row-id="'+id+'"]').removeClass('error');
 			}
 		}, 100);
@@ -82,15 +97,20 @@ AMT = {
 		
 	},
 	
-	cancel: function(){
+	cancel: function()
+	{
 		location.href = AMT.BASEURL+'/'+AMT.CONTROLLER;
 	},
 	
 	// disables 'oil change' order type option, if automobile selected is 'electric'
-	updateOrderTypes: function(id){		
-		if (id == 3){
+	updateOrderTypes: function(id)
+	{
+		if (id == 3)
+		{
 			$('#order_type_id').val('').find('option[value="1"]').prop('disabled', true);
-		} else {
+		}
+		else
+		{
 			$('#order_type_id').find('option[value="1"]').prop('disabled', false);
 		}
 	}
