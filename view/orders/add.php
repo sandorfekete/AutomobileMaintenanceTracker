@@ -4,7 +4,7 @@
 	<fieldset>
 		<legend>Order Details</legend>
 
-		<form id="frmAdd" method="post" action="<?php echo BASEURL ?>/orders" onsubmit="return AMT.Form.validateForm(this)">
+		<form id="frmAdd" method="post" action="<?php echo BASEURL.'/'.CONTROLLER ?>" onsubmit="return AMT.Form.validateForm(this)">
 
 			<label>Automobile:
 				<?php echo $automobiles ?>

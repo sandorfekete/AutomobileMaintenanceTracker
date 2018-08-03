@@ -1,46 +1,62 @@
-<?php
+<h2>Edit Automobile (#<?php echo $id ?>)</h2>
 
-?>
+<div id="editAutomobile" class="wrapper">
+	<fieldset>
+		<legend>Automobile Details</legend>
+		
+		<form id="frmEdit" method="post" action="<?php echo BASEURL.'/'.CONTROLLER ?>" onsubmit="return AMT.Form.validateForm(this)">
 
-<h2>Edit Customer</h2>
+			<label>Year:
+				<input type="text" name="year" class="data digits required" value="<?php echo $automobile->get('year') ?>" />
+			</label>
+			
+			<label>Make:
+				<?php echo $automobile_makes ?>
+			</label>
+			
+			<label>Model:
+				<input type="text" name="model" class="data required" value="<?php echo $automobile->get('model') ?>" />
+			</label>
+			
+			<label>Type:
+				<?php echo $automobile_types ?>
+			</label>
 
-<form id="frmEdit" method="post" action="<?php echo BASEURL ?>/customers" onsubmit="return AMT.Form.validateForm(this)">
+			<label>Colour:
+				<input type="text" name="colour" class="data required" value="<?php echo $automobile->get('colour') ?>" />
+			</label>
+			
+			<label>Plate:
+				<input type="text" name="plate" class="data required" value="<?php echo $automobile->get('plate') ?>" />
+			</label>
+			
+			<label>Odometer:
+				<input type="text" name="odometer" class="data digits required" value="<?php echo $automobile->get('odometer') ?>" />
+			</label>
+
+			<label>Date Created:
+				<input type="text" readonly="readonly" value="<?php echo $automobile->get('date_created') ?>" />
+			</label>
+
+			<label>Date Modified:
+				<input type="text" readonly="readonly" value="<?php echo $automobile->get('date_modified') ?>" />
+			</label>
+
+			<div class="center">
+				<hr>
+				<button class="button submit" data-button-text="SAVE" type="submit">SAVE</button>
+				<button class="button" type="button" onclick="AMT.cancel()">CANCEL</button>
+			</div>
+
+			<div class="clear"></div>
+
+			<div class="loader"></div>
+			<div class="messages"></div>
+
+			<input type="hidden" name="_id" value="<?php echo $id ?>" />
+			<input type="hidden" name="task" value="submitAutomobile" />
+
+		</form>	
 	
-	<label>First Name:
-		<input type="text" name="firstName" data-error-label="First Name" class="data required" />
-	</label>
-	
-	<label>Last Name:
-		<input type="text" name="lastName" data-error-label="Last Name" class="data required" />
-	</label>
-	
-	<label>Email:
-		<input type="text" name="email" data-error-label="Email" class="data email required" />
-	</label>
-	
-	<label>Subject:
-		<select name="subject" class="data required">
-			<option value="General">General</option>
-			<option value="Site Feedback">Site Feedback</option>
-			<option value="Sponsorship">Sponsorship</option>
-			<option value="Business Enquiry">Business Enquiry</option>
-			<option value="Testimonial">Testimonial</option>
-		</select>
-	</label>
-	
-	<label>Message:
-		<textarea name="message" data-error-label="Message" class="data required"></textarea>
-	</label>
-	
-	<button class="button submit" type="submit">SEND</button>
-	<button class="button" onclick="location.href = '<?php echo BASEURL ?>/customers'">CANCEL</button>
-	
-	<br class="clear">
-	
-	<div class="loader"></div>
-	<div class="messages"></div>
-	
-	<input type="hidden" name="id" value="" />
-	<input type="hidden" name="task" value="submitCustomer" />
-	
-</form>	
+	</fieldset>
+</div>

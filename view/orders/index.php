@@ -34,6 +34,6 @@
 	<input type="hidden" name="limitOffset" value="0" />
 </form>
 
-<form id="frmAction" class="hidden" method="post" action="<?php echo BASEURL ?>/orders/edit">
+<form id="frmAction" class="hidden" method="post" action="<?php echo BASEURL.'/'.CONTROLLER.'/edit' ?>">
 	<input type="hidden" name="_id" value="" />
 </form>

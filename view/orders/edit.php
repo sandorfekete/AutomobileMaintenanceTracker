@@ -32,7 +32,7 @@
 	<fieldset id="orderDetails">
 		<legend>Order Details</legend>
 
-		<form id="frmEdit" method="post" action="<?php echo BASEURL ?>/orders" onsubmit="return AMT.Form.validateForm(this)">
+		<form id="frmEdit" method="post" action="<?php echo BASEURL.'/'.CONTROLLER ?>" onsubmit="return AMT.Form.validateForm(this)">
 
 			<label>Order Type:
 				<?php echo $order_types ?>

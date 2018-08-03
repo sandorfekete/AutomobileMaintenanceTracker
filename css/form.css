@@ -7,7 +7,6 @@ fieldset
 	
 #editOrder fieldset
 {
-/*	width: 382px;*/
 	width: 462px;
 	float: left;
 }
@@ -40,6 +39,13 @@ fieldset
 	{
 		float: right;
 	}
+	
+#editAutomobile fieldset,
+#addOrder fieldset
+{
+	width: 50%;
+	margin: 0 auto;
+}
 
 legend
 {
@@ -163,4 +169,10 @@ form.hidden
 		min-width: 50px;
 		width: 50px;
 		margin: 8px 4px;
+	}
+
+	
+	#app.automobiles #frmFilters tbody .button
+	{
+		margin: 0;
 	}

@@ -4,11 +4,6 @@ require_once 'autoload.php';
 
 AMT::init();
 
-$VIEW = AMT::$view;
-$CONTROLLER = AMT::$controller; 
-
-$isLocal = ENV == 'local' ? true : false;
-
 ?>
 
 <!DOCTYPE html>
@@ -30,16 +25,16 @@ $isLocal = ENV == 'local' ? true : false;
 	<script src="<?php echo BASEURL ?>/js/AMT.Form.Validate.js?v=<?php echo TIMESTAMP ?>"></script>
 </head>
 <body>
-	<div id="app">
+	<div id="app" class="<?php echo CONTROLLER ?>">
 		
 		<div class="header"><a href="<?php echo BASEURL ?>"><h1>Automobile Maintenance Tracker</h1></a></div>
 		
 		<div class="content">
 			
-			<?php if ($VIEW != 'home') : ?>
-				<?php include 'controller/'.$CONTROLLER.'.php'; ?>
+			<?php if (VIEW != 'home') : ?>
+				<?php include 'controller/'.CONTROLLER.'.php'; ?>
 			<?php endif ?>
-			<?php include 'view/'.$VIEW.'.php'; ?>
+			<?php include 'view/'.VIEW.'.php'; ?>
 			<div class="clear"></div>
 			
 		</div>
@@ -53,8 +48,8 @@ $isLocal = ENV == 'local' ? true : false;
     <script>
 		$(function(){
 			AMT.BASEURL = '<?php echo BASEURL ?>';
-			AMT.CONTROLLER = '<?php echo $CONTROLLER ?>';
-			AMT.VIEW = '<?php echo $VIEW ?>';
+			AMT.CONTROLLER = '<?php echo CONTROLLER ?>';
+			AMT.VIEW = '<?php echo VIEW ?>';
 			
 			AMT.init();
 		});

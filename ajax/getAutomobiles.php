@@ -21,13 +21,17 @@ if ($rows = getData())
 		$dataRow = [];
 
 		$dataRow[] = $row['id'];
-		$dataRow[] = $row['automobile'];
-		$dataRow[] = $row['order_type'];
-		$dataRow[] = $row['notes'];
+		$dataRow[] = $row['year'];
+		$dataRow[] = $row['make'];
+		$dataRow[] = $row['model'];
+		$dataRow[] = $row['plate'];
+		$dataRow[] = $row['type'];
+		$dataRow[] = $row['colour'];
+		$dataRow[] = $row['odometer'];
 		$dataRow[] = $row['date_created'];
 		$dataRow[] = $row['date_modified'];
 
-		$dataRow[] = '<button class="button" type="button" onclick="AMT.editRecord('.$row['id'].')">EDIT</button><button class="button delete" type="button" onclick="AMT.deleteRecord('.$row['id'].')">DEL</button>';
+		$dataRow[] = '<button class="button" type="button" onclick="AMT.editRecord('.$row['id'].')">EDIT</button>';
 
 		$data[] = $dataRow;
 	}
@@ -40,7 +44,7 @@ if ($rows = getData())
 }
 else
 {
-	$json->data = '<tr><td colspan="7" class="nodata">no data</td></tr>';
+	$json->data = '<tr><td colspan="11" class="nodata">no data</td></tr>';
 	$json->pagination = AMT::getPagination($limitRecords, $limitOffset, 0);
 	$json->recordsTotal = 0;
 }
@@ -55,19 +59,17 @@ function getData($limit=true)
 	
 	$sql = "
 		SELECT 
-			o.*, 
-			CONCAT(a.year, ':', am.name, ':', a.model, '<br>', a.plate, '<br>', at.name) AS automobile,
-			ot.name AS order_type 
+			a.*, 
+			am.name AS make,
+			at.name AS type
 		";
 	
-	$sql .= !$limit ? ", COUNT(o.id) AS Total" : '';
+	$sql .= !$limit ? ", COUNT(a.id) AS Total" : '';
 	
 	$sql .= "
-		FROM orders AS o
-		LEFT JOIN automobiles AS a ON a.id = o.automobile_id
+		FROM automobiles AS a
 		LEFT JOIN automobile_makes AS am ON am.id = a.automobile_make_id
 		LEFT JOIN automobile_types AS at ON at.id = a.automobile_type_id
-		LEFT JOIN order_types AS ot ON ot.id = o.order_type_id
 		ORDER BY date_created DESC, date_modified DESC
 	";
 	
@@ -80,7 +82,7 @@ function getData($limit=true)
 
 function getTotalRecords()
 {
-	$row = Database::getRow("SELECT COUNT(id) AS Total FROM orders WHERE 1=1");
+	$row = Database::getRow("SELECT COUNT(id) AS Total FROM automobiles WHERE 1=1");
 	
 	return $row['Total'];
 }

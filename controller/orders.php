@@ -10,15 +10,17 @@ $order_types_data = Database::getRows("
 	ORDER BY id ASC
 ");
 
-if (strpos($VIEW, 'add') !== false)
+if (strpos(VIEW, 'add') !== false)
 { 
 	$automobiles = Database::getRows("
 		SELECT
 			a.id AS value,
-			CONCAT(a.year, ' ', am.name, ' ', a.model, ' - ', a.plate, ' - ', at.name) AS label
+			CONCAT(a.year, ' ', am.name, ' ', a.model, ' - ', a.plate, ' - ', at.name) AS label,
+			am.name AS make
 		FROM automobiles AS a
 		JOIN automobile_makes AS am ON am.id = a.automobile_make_id
 		JOIN automobile_types AS at ON at.id = a.automobile_type_id
+		ORDER BY year DESC, make ASC, model ASC
 	");
 
 	$automobiles = AMT::createSelectList(
@@ -39,7 +41,7 @@ if (strpos($VIEW, 'add') !== false)
 		]
 	);
 }
-else if (strpos($VIEW, 'edit') !== false)
+else if (strpos(VIEW, 'edit') !== false)
 {
 	$id = isset($_POST['_id']) ? (int) $_POST['_id'] : false;
 

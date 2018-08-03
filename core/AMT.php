@@ -52,6 +52,9 @@ class AMT
 
 		self::$view = $indexExist ? self::$viewUrl.'/index' : self::$viewUrl;
 		self::$view = $indexExist || $viewExist ? self::$view : '404';
+		
+		define('CONTROLLER', self::$controller);
+		define('VIEW', self::$view);
 	}
 	
 	public static function getPostFields()

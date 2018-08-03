@@ -14,4 +14,3 @@ class Order extends Table
 		return $this;
 	}
 }
-
