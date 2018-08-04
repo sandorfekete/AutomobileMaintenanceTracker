@@ -1,46 +1,5 @@
 AMT.Form.Util = {
     
-    checkFalseEmpty: function(value)
-    {
-        var count = 0;
-
-        for (var i = 0; i < value.length; i++)
-        {
-            if (value.charAt(i) == " " || value.charAt(i) == "\n")
-            {
-                count++;
-            }
-        }
-
-        if (count == value.length)
-        {
-            return true;
-        }
-
-        return false;
-    },
-    
-    checkEmpty: function(field, value)
-    {
-        var type = $(field)[0].type;
-        var name = $(field)[0].name;
-
-        if (type == 'radio' || type == 'checkbox')
-        {
-            if (!$('input[name="' + name + '"]:checked').length)
-            {
-                return true;
-            }
-        }
-
-        if (value == null || value == "" || this.checkFalseEmpty(value))
-        {
-            return true;
-        }
-
-        return false;
-    },
-    
     capitalize: function(label)
     {
         var array = label.split(' ');
