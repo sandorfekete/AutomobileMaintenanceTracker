@@ -1,6 +1,6 @@
 AMT.Form.Util = {
     
-    countFalseEmpty: function(value)
+    checkFalseEmpty: function(value)
     {
         var count = 0;
 
@@ -33,7 +33,7 @@ AMT.Form.Util = {
             }
         }
 
-        if (value == null || value == "" || this.countFalseEmpty(value))
+        if (value == null || value == "" || this.checkFalseEmpty(value))
         {
             return true;
         }

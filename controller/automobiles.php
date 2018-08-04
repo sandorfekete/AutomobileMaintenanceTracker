@@ -25,7 +25,7 @@ if (strpos(VIEW, 'add') !== false)
         $automobile_makes_data,
         [
             'class' => 'data required',
-            'dataErrorLabel' => 'Automobile Make'
+            'dataErrorLabel' => 'Make'
         ]
     );
 
@@ -34,7 +34,7 @@ if (strpos(VIEW, 'add') !== false)
         $automobile_types_data,
         [
             'class' => 'data required',
-            'dataErrorLabel' => 'Automobile Type'
+            'dataErrorLabel' => 'Type'
         ]
     );
 }
