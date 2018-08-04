@@ -63,7 +63,7 @@ function getData($limit = true)
             at.name AS type
         ";
 
-    $sql .=!$limit ? ", COUNT(a.id) AS Total" : '';
+    $sql .= !$limit ? ", COUNT(a.id) AS Total" : '';
 
     $sql .= "
         FROM automobiles AS a

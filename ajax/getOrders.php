@@ -59,7 +59,7 @@ function getData($limit = true)
             ot.name AS order_type 
         ";
 
-    $sql .=!$limit ? ", COUNT(o.id) AS Total" : '';
+    $sql .= !$limit ? ", COUNT(o.id) AS Total" : '';
 
     $sql .= "
         FROM orders AS o
