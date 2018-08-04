@@ -1,118 +1,120 @@
 AMT = {
-
-	BASEURL: '',
-	AJAX_PATH: '',
-	CONTROLLER: '',
-	VIEW: '',
-			
+    
+    BASEURL: '',
+    AJAX_PATH: '',
+    CONTROLLER: '',
+    VIEW: '',
+    
     init: function()
-	{
-		console.log('jQuery OK');
-		console.log('AMT initialized');
-		
-		// fetch records via AJAX only when in specific controller and view
-		if (['orders','automobiles'].includes(this.CONTROLLER)
-		&& ![this.CONTROLLER+'/edit', this.CONTROLLER+'/add'].includes(this.VIEW))
-		{
-			this.getRecords();
-		}
+    {
+        console.log('jQuery OK');
+        console.log('AMT initialized');
+
+        // fetch records via AJAX only when in specific controller and view
+        if (['orders', 'automobiles'].includes(this.CONTROLLER)
+        && ![this.CONTROLLER + '/edit', this.CONTROLLER + '/add'].includes(this.VIEW))
+        {
+            this.getRecords();
+        }
     },
-	
-	getRecords: function()
-	{
-		var $form = $('#frmFilters');
-		var action = 'get'+AMT.Form.Util.capitalize(this.CONTROLLER);
+    
+    getRecords: function()
+    {
+        var $form = $('#frmFilters');
+        var action = 'get' + AMT.Form.Util.capitalize(this.CONTROLLER);
 
-		$.ajax({
-			url: AMT.BASEURL+'/ajax/'+action+'.php',
-			type: 'POST',
-			data: $('#frmFilters').serialize(),
-			dataType: 'json',
-			success: function(data){
-				$($form).find('tbody').html(data.data);
-				$($form).find('.pagination').html(data.pagination);
-				$($form).find('.totals .total').text(data.recordsTotal);
+        $.ajax({
+            url: AMT.BASEURL + '/ajax/' + action + '.php',
+            type: 'POST',
+            data: $('#frmFilters').serialize(),
+            dataType: 'json',
+            success: function(data)
+            {
+                $($form).find('tbody').html(data.data);
+                $($form).find('.pagination').html(data.pagination);
+                $($form).find('.totals .total').text(data.recordsTotal);
 
-				data.recordsTotal === 0 ? $($form).find('.pagination').css('visibility', 'hidden') : false;
-				
-				$($form).find('.totals .filtered').hide();
+                data.recordsTotal === 0 ? $($form).find('.pagination').css('visibility', 'hidden') : false;
 
-				AMT.bindPagination();
-			}
-		});
-	},
+                $($form).find('.totals .filtered').hide();
 
-	bindPagination: function()
-	{
-		$('#frmFilters .pagination li').click(function(e){
-			var limitOffset = $(this).attr('data-limit-offset');
-			
-			$('input[name="limitOffset"]').val(limitOffset);
-			
-			AMT.getRecords();
-		});
-	},
-	
-	addRecord: function()
-	{
-		location.href = AMT.BASEURL+'/'+AMT.CONTROLLER+'/add';
-	},
-	
-	
-	editRecord: function(id)
-	{
-		$('#frmAction').find('input[name="_id"]').val(id).parent().submit();
-	},
-	
-	deleteRecord: function(id)
-	{
-		var action = 'delete'+AMT.Form.Util.capitalize(AMT.Form.Util.singularize(this.CONTROLLER));
-		
-		$('tr[data-row-id="'+id+'"]').addClass('error');
+                AMT.bindPagination();
+            }
+        });
+    },
+    
+    bindPagination: function()
+    {
+        $('#frmFilters .pagination li').click(function(e)
+        {
+            var limitOffset = $(this).attr('data-limit-offset');
 
-		// need a short timeout, otherwise confirm window appears before row highlight
-		var timeout = setTimeout(function(){
-			
-			clearTimeout(timeout);
-			
-			if (confirm('Are you sure you want to DELETE record #'+id+'?'))
-			{
-				$.ajax({
-					url: AMT.BASEURL+'/ajax/'+action+'.php',
-					type: 'POST',
-					data: {_id:id},
-					dataType: 'json',
-					success: function(data){
-						$('input[name="limitOffset"]').val(0);
-						AMT.getRecords();
-					}
-				});
-			}
-			else
-			{
-				$('tr[data-row-id="'+id+'"]').removeClass('error');
-			}
-		}, 100);
-		
-		
-	},
-	
-	cancel: function()
-	{
-		location.href = AMT.BASEURL+'/'+AMT.CONTROLLER;
-	},
-	
-	// disables 'oil change' order type option, if automobile selected is 'electric'
-	updateOrderTypes: function(id)
-	{
-		if (id == 3)
-		{
-			$('#order_type_id').val('').find('option[value="1"]').prop('disabled', true);
-		}
-		else
-		{
-			$('#order_type_id').find('option[value="1"]').prop('disabled', false);
-		}
-	}
+            $('input[name="limitOffset"]').val(limitOffset);
+
+            AMT.getRecords();
+        });
+    },
+    
+    addRecord: function()
+    {
+        location.href = AMT.BASEURL + '/' + AMT.CONTROLLER + '/add';
+    },
+    
+    editRecord: function(id)
+    {
+        $('#frmAction').find('input[name="_id"]').val(id).parent().submit();
+    },
+    
+    deleteRecord: function(id)
+    {
+        var action = 'delete' + AMT.Form.Util.capitalize(AMT.Form.Util.singularize(this.CONTROLLER));
+
+        $('tr[data-row-id="' + id + '"]').addClass('error');
+
+        // need a short timeout, otherwise confirm window appears before row highlight
+        var timeout = setTimeout(function()
+        {
+            clearTimeout(timeout);
+
+            if (confirm('Are you sure you want to DELETE record #' + id + '?'))
+            {
+                $.ajax({
+                    url: AMT.BASEURL + '/ajax/' + action + '.php',
+                    type: 'POST',
+                    data: {_id: id},
+                    dataType: 'json',
+                    success: function(data)
+                    {
+                        $('input[name="limitOffset"]').val(0);
+                        AMT.getRecords();
+                    }
+                });
+            }
+            else
+            {
+                $('tr[data-row-id="' + id + '"]').removeClass('error');
+            }
+        }, 100);
+
+
+    },
+    
+    cancel: function()
+    {
+        location.href = AMT.BASEURL + '/' + AMT.CONTROLLER;
+    },
+    
+    // disables 'oil change' order type option, if automobile selected is 'electric'
+    updateOrderTypes: function(id)
+    {
+        if (id == 3)
+        {
+            $('#order_type_id').val('').find('option[value="1"]').prop('disabled', true);
+        }
+        else
+        {
+            $('#order_type_id').find('option[value="1"]').prop('disabled', false);
+        }
+    }
 
 };
