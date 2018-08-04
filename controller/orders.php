@@ -23,7 +23,7 @@ if (strpos(VIEW, 'add') !== false)
         ORDER BY year DESC, make ASC, model ASC
     ");
 
-    $automobiles = AMT::createSelectList(
+    $automobiles = Util::createSelectList(
         'automobile_id', 
         $automobiles,
         [
@@ -33,7 +33,7 @@ if (strpos(VIEW, 'add') !== false)
         ]
     );
 
-    $order_types = AMT::createSelectList(
+    $order_types = Util::createSelectList(
         'order_type_id', 
         $order_types_data, 
         [
@@ -62,7 +62,7 @@ else if (strpos(VIEW, 'edit') !== false)
         WHERE a.id = " . $order->get('automobile_id') . "
     ");
 
-    $order_types = AMT::createSelectList(
+    $order_types = Util::createSelectList(
         'order_type_id',
         $order_types_data,
         [

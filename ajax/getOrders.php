@@ -7,7 +7,7 @@ require_once PATH . '/autoload.php';
 
 AMT::init();
 
-$fields = AMT::getPostFields();
+$fields = Util::getPostFields();
 
 $limitRecords = RECORDS_PER_PAGE;
 $limitOffset = $fields['limitOffset'];
@@ -34,14 +34,14 @@ if ($rows = getData())
 
     $totalRecords = getTotalRecords();
 
-    $json->data = AMT::createTableRowData($data);
-    $json->pagination = AMT::getPagination($limitRecords, $limitOffset, $totalRecords);
+    $json->data = Util::createTableRowData($data);
+    $json->pagination = Util::getPagination($limitRecords, $limitOffset, $totalRecords);
     $json->recordsTotal = $totalRecords;
 }
 else
 {
     $json->data = '<tr><td colspan="7" class="nodata">no data</td></tr>';
-    $json->pagination = AMT::getPagination($limitRecords, $limitOffset, 0);
+    $json->pagination = Util::getPagination($limitRecords, $limitOffset, 0);
     $json->recordsTotal = 0;
 }
 

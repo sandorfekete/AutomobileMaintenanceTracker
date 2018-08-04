@@ -20,7 +20,7 @@ $automobile_types_data = Database::getRows("
 
 if (strpos(VIEW, 'add') !== false)
 {
-    $automobile_makes = AMT::createSelectList(
+    $automobile_makes = Util::createSelectList(
         'automobile_make_id',
         $automobile_makes_data,
         [
@@ -29,7 +29,7 @@ if (strpos(VIEW, 'add') !== false)
         ]
     );
 
-    $automobile_types = AMT::createSelectList(
+    $automobile_types = Util::createSelectList(
         'automobile_type_id',
         $automobile_types_data,
         [
@@ -50,7 +50,7 @@ else if (strpos(VIEW, 'edit') !== false)
 
     $automobile->fetch($id);
 
-    $automobile_makes = AMT::createSelectList(
+    $automobile_makes = Util::createSelectList(
         'automobile_make_id',
         $automobile_makes_data,
         [
@@ -60,7 +60,7 @@ else if (strpos(VIEW, 'edit') !== false)
         ]
     );
 
-    $automobile_types = AMT::createSelectList(
+    $automobile_types = Util::createSelectList(
         'automobile_type_id',
         $automobile_types_data,
         [

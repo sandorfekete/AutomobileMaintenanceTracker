@@ -7,7 +7,7 @@ require_once PATH . '/autoload.php';
 
 AMT::init();
 
-$fields = AMT::getPostFields();
+$fields = Util::getPostFields();
 
 $automobile = new Automobile();
 
