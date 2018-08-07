@@ -11,7 +11,7 @@
             </label>
 
             <label>Make:
-                <?php echo $automobile_makes ?>
+                <?php echo $makes ?>
             </label>
 
             <label>Model:
@@ -19,7 +19,7 @@
             </label>
 
             <label>Type:
-                <?php echo $automobile_types ?>
+                <?php echo $types ?>
             </label>
 
             <label>Colour:

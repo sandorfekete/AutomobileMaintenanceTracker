@@ -7,39 +7,39 @@
         <form id="frmEdit" method="post" action="<?php echo BASEURL . '/' . CONTROLLER ?>" onsubmit="return AMT.Form.validateForm(this)">
 
             <label>Year:
-                <input type="text" name="year" class="data digits required" value="<?php echo $automobile->get('year') ?>" />
+                <input type="text" name="year" class="data digits required" value="<?php echo $year ?>" />
             </label>
 
             <label>Make:
-                <?php echo $automobile_makes ?>
+                <?php echo $makes ?>
             </label>
 
             <label>Model:
-                <input type="text" name="model" class="data required" value="<?php echo $automobile->get('model') ?>" />
+                <input type="text" name="model" class="data required" value="<?php echo $model ?>" />
             </label>
 
             <label>Type:
-                <?php echo $automobile_types ?>
+                <?php echo $types ?>
             </label>
 
             <label>Colour:
-                <input type="text" name="colour" class="data required" value="<?php echo $automobile->get('colour') ?>" />
+                <input type="text" name="colour" class="data required" value="<?php echo $colour ?>" />
             </label>
 
             <label>Plate:
-                <input type="text" name="plate" class="data required" value="<?php echo $automobile->get('plate') ?>" />
+                <input type="text" name="plate" class="data required" value="<?php echo $plate ?>" />
             </label>
 
             <label>Original Odometer(km):
-                <input type="text" name="odometer" readonly="readonly" value="<?php echo $automobile->get('odometer') ?>" />
+                <input type="text" name="odometer" readonly="readonly" value="<?php echo $odometer ?>" />
             </label>
 
             <label>Date Created:
-                <input type="text" readonly="readonly" value="<?php echo $automobile->get('date_created') ?>" />
+                <input type="text" readonly="readonly" value="<?php echo $date_created ?>" />
             </label>
 
             <label>Date Modified:
-                <input type="text" readonly="readonly" value="<?php echo $automobile->get('date_modified') ?>" />
+                <input type="text" readonly="readonly" value="<?php echo $date_modified ?>" />
             </label>
 
             <div class="center">

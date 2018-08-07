@@ -2,7 +2,7 @@
 
 $order = new Order();
 
-$order_types_data = Database::getRows("
+$types_data = Database::getRows("
     SELECT 
         name AS label, 
         id AS value 
@@ -12,7 +12,7 @@ $order_types_data = Database::getRows("
 
 if (strpos(VIEW, 'add') !== false)
 {
-    $automobiles = Database::getRows("
+    $automobiles_data = Database::getRows("
         SELECT
             a.id AS value,
             CONCAT(a.year, ' ', am.name, ' ', a.model, ' - ', a.plate, ' - ', at.name) AS label,
@@ -25,7 +25,7 @@ if (strpos(VIEW, 'add') !== false)
 
     $automobiles = Util::createSelectList(
         'automobile_id', 
-        $automobiles,
+        $automobiles_data,
         [
             'class' => 'data required',
             'dataErrorLabel' => 'Automobile',
@@ -33,9 +33,9 @@ if (strpos(VIEW, 'add') !== false)
         ]
     );
 
-    $order_types = Util::createSelectList(
+    $types = Util::createSelectList(
         'order_type_id', 
-        $order_types_data, 
+        $types_data, 
         [
             'class' => 'data required',
             'dataErrorLabel' => 'Order Type'
@@ -62,13 +62,18 @@ else if (strpos(VIEW, 'edit') !== false)
         WHERE a.id = " . $order->get('automobile_id') . "
     ");
 
-    $order_types = Util::createSelectList(
+    $types = Util::createSelectList(
         'order_type_id',
-        $order_types_data,
+        $types_data,
         [
             'selected' => $order->get('order_type_id'),
             'attribs' => 'readonly="readonly" disabled="disabled"',
             'dataErrorLabel' => 'Order Type'
         ]
     );
+    
+    $notes = $order->get('notes');
+    $odometer = $order->get('odometer');
+    $date_created = $order->get('date_created');
+    $date_modified = $order->get('date_modified');
 }

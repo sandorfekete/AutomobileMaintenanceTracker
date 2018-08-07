@@ -11,7 +11,7 @@
             </label>
 
             <label>Order Type:
-                <?php echo $order_types ?>
+                <?php echo $types ?>
             </label>
 
             <label>Notes:

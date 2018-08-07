@@ -2,7 +2,7 @@
 
 $automobile = new Automobile();
 
-$automobile_makes_data = Database::getRows("
+$makes_data = Database::getRows("
     SELECT 
         name AS label, 
         id AS value 
@@ -10,7 +10,7 @@ $automobile_makes_data = Database::getRows("
     ORDER BY id ASC
 ");
 
-$automobile_types_data = Database::getRows("
+$types_data = Database::getRows("
     SELECT 
         name AS label, 
         id AS value 
@@ -20,18 +20,18 @@ $automobile_types_data = Database::getRows("
 
 if (strpos(VIEW, 'add') !== false)
 {
-    $automobile_makes = Util::createSelectList(
+    $makes = Util::createSelectList(
         'automobile_make_id',
-        $automobile_makes_data,
+        $makes_data,
         [
             'class' => 'data required',
             'dataErrorLabel' => 'Make'
         ]
     );
 
-    $automobile_types = Util::createSelectList(
+    $types = Util::createSelectList(
         'automobile_type_id',
-        $automobile_types_data,
+        $types_data,
         [
             'class' => 'data required',
             'dataErrorLabel' => 'Type'
@@ -50,9 +50,9 @@ else if (strpos(VIEW, 'edit') !== false)
 
     $automobile->fetch($id);
 
-    $automobile_makes = Util::createSelectList(
+    $makes = Util::createSelectList(
         'automobile_make_id',
-        $automobile_makes_data,
+        $makes_data,
         [
             'selected' => $automobile->get('automobile_make_id'),
             'class' => 'data required',
@@ -60,13 +60,21 @@ else if (strpos(VIEW, 'edit') !== false)
         ]
     );
 
-    $automobile_types = Util::createSelectList(
+    $types = Util::createSelectList(
         'automobile_type_id',
-        $automobile_types_data,
+        $types_data,
         [
             'selected' => $automobile->get('automobile_type_id'),
             'class' => 'data required',
             'dataErrorLabel' => 'Automobile Type'
         ]
     );
+    
+    $year = $automobile->get('year');
+    $model = $automobile->get('model');
+    $colour = $automobile->get('colour');
+    $plate = $automobile->get('plate');
+    $odometer = $automobile->get('odometer');
+    $date_created = $automobile->get('date_created');
+    $date_modified = $automobile->get('date_modified');
 }

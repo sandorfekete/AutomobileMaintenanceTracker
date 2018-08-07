@@ -35,23 +35,23 @@
         <form id="frmEdit" method="post" action="<?php echo BASEURL . '/' . CONTROLLER ?>" onsubmit="return AMT.Form.validateForm(this)">
 
             <label>Order Type:
-                <?php echo $order_types ?>
+                <?php echo $types ?>
             </label>
 
             <label>Notes:
-                <textarea name="notes" class="data required"><?php echo $order->get('notes') ?></textarea>
+                <textarea name="notes" class="data required"><?php echo $notes ?></textarea>
             </label>
 
             <label>Current Odometer(km):
-                <input type="text" name="odometer" class="data digits required" value="<?php echo $order->get('odometer') ?>" />
+                <input type="text" name="odometer" class="data digits required" value="<?php echo $odometer ?>" />
             </label>
 
             <label>Date Created:
-                <input type="text" readonly="readonly" value="<?php echo $order->get('date_created') ?>" />
+                <input type="text" readonly="readonly" value="<?php echo $date_created ?>" />
             </label>
 
             <label>Date Modified:
-                <input type="text" readonly="readonly" value="<?php echo $order->get('date_modified') ?>" />
+                <input type="text" readonly="readonly" value="<?php echo $date_modified ?>" />
             </label>
 
             <div class="center">
